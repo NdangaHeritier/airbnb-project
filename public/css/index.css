@@ -1,0 +1,9 @@
+/* .hover:hover{
+    background-color: rgb(224, 228, 228);
+} */
+.hover:hover{
+    background-color: rgba(200, 204, 204, 0.4);
+}
+.round-4{
+    border-radius: 0.6rem;
+}
