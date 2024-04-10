@@ -22,6 +22,11 @@
 					<div class="carousel-inner overflow-hidden" style="border-radius: 1rem;">
 					 
 							<div class="d-none d-md-block float-end position-absolute w-100 p-3" style="z-index: 999;">
+							@if($host->price>=100)
+							<div class="btn rounded-pill btn-light h6">
+								<i class="fa fa-star px-2"></i>Guests favorite
+							</div>
+							@endif
 								<i class="fa fa-heart text-dark shadow-lg float-end" style="text-shadow: 0px 0px 2px white;"></i>
 							</div>
 							<a href="{{url('/view/' . $host->id)}}" class="">
@@ -55,7 +60,7 @@
 							<span class="text-end float-end"><i class="fa fa-star mx-2"></i>4.5</span>
 						</div>
 						<div class="place-address text-muted small">{{$host->city}} - {{$host->place_region}}/ {{$host->province}} {{$host->street}}</div>
-						<div class="place-regdate text-muted small">apr -04</div>
+						<div class="place-regdate text-muted small">{{date_format(date_create($host->created_at),'d M y')}}</div>
 						<div class="place-price small"><span class="fw-bold">$ {{$host->price}}</span> night</div>
 					</a>
 				</div>

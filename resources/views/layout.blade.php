@@ -19,9 +19,8 @@
 				<a href="/"><img src="/images/airbnb-logo.png"></a>
 			</div>
 			<div class="col-sm-5">
-				<a href="#" class="btn text-dark fw-bold">Stays</a>
-				<a href="#" class="btn text-muted hover rounded-pill">Experiences</a>
-				<a href="#" class="btn text-muted hover rounded-pill">Online Experiences</a>
+				<a href="{{url('/')}}" class="btn text-dark fw-bold">Stays</a>
+				<a href="{{url('/')}}" class="btn text-muted hover rounded-pill">Experiences</a>
 			</div>
 			<div class="col-sm-3 d-sm-flex">
 				<a href="/become-a-host" class="btn text-dark hover rounded-pill">Airbnb Your Home</a>

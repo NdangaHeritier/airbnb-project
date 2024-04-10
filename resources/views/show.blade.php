@@ -49,13 +49,13 @@
 					</div>
 					<div class="menu w-100  text-muted">
 						<div class="sub-menu pb-2 mt-2 w-100 border-bottom">
-							<a href="wishlists" class="px-2 text-decoration-none p-2 text-dark w-100">WishLists</a>
+							<a href="../wishlists" class="px-2 text-decoration-none p-2 text-dark w-100">WishLists</a>
 						</div>
 						<div class="sub-menu mt-2 w-100">
 							<a href="../host" class="px-2 text-decoration-none p-2 text-dark w-100">Manage Listings</a>
 						</div>
 						<div class="sub-menu mt-2 w-10 pb-2 border-bottom">
-							<a href="account" class="px-2 text-decoration-none p-2 text-dark w-100">Account</a>
+							<a href="../account" class="px-2 text-decoration-none p-2 text-dark w-100">Account</a>
 						</div>
 						<div class="sub-menu mt-2 w-100">
 							<a href="../logout" class="px-2 text-decoration-none p-2 text-dark w-100">Logout</a>
@@ -88,28 +88,56 @@
 			</div>
 		</div>
 </header>
+@if(Session::has('message'))
+	<div class="alert alert-danger"><i class="fa fa-circle-info mx-4"></i>{{Session::get('message')}}</div>
+@endif
+@if(Session::has('success'))
+	<div class="alert alert-success"><i class="fa fa-heart mx-4"></i>{{Session::get('success')}} <a href="{{url('/wishlists')}}" class="alert-link small text-decoration-none">Open wishlist.</a></div>
+@endif
+@if(Session::has('reservation'))
+	<div class="alert alert-success"><i class="fa fa-check mx-4"></i>Reservation provided successfully! check in place of the form you'll see full details.</div>
+@endif
 <div class="p-3">
-<div class="text-dark title h4 p-3 ms-5">{{$posts->place_name}} </div>
-    <div class="row ms-5" style="overflow: hidden; height: 300px">
+<div class="text-dark title h4 p-3 ps-0 ms-5">{{$posts->place_name}} <i class="fa fa-circle-check text-dark small"></i></div>
+    <div class="d-sm-flex bg-dark ms-5" style="overflow: hidden; height: 350px ;border-radius:1rem">
         <div class="col-sm-5">
-            <img src="/place-cover/{{$posts->cover_photo}}" alt="" height="300" style="border-radius: 1rem;">
+            <img src="/place-cover/{{$posts->cover_photo}}" width="100%" alt="" height="350" >
         </div>
         <div class="col-sm-7 row">
             @foreach($posts->photos as $photo)
-            <div class="col-sm-4 ">
-                <img src="/place_photos/{{$photo->filename}}" alt="{{$photo->filename}}" class="rounded border border-white border-3 " width="250"height="150" style="border-radius: 1rem;">
+            <div class="col-sm-6 d-inline-block">
+                <img src="/place_photos/{{$photo->filename}}" alt="{{$photo->filename}}" class="border-5 border border-top-0 border-white " width="375" height="200">
             </div>
             @endforeach
         </div>
     </div>
-    <div class="p-3 row ms-5">
+    <div class="p-3 ps-0 row ms-5">
 		<div class="col-sm-7">
-			<div class="text-dark title h5">Entire place in {{$posts->province}} province, {{$posts->city}}, {{$posts->place_region}} <i class="fa fa-circle-check text-dark small"></i> </div>
+			<div class="text-dark title h5">Entire {{$posts->place_category}} in {{$posts->province}} province, {{$posts->city}}, {{$posts->place_region}} </div>
 			<div class="text-body title">
 				{{$posts->number_of_guests}} guests. {{$posts->number_of_bedrooms}} bedrooms. {{$posts->number_of_beds}} beds
 			</div>
-			<div class="fw-bold py-2">
-				<i class="fa fa-star fa-sm"></i> 4.5
+			<div class="fw-bold py-2 d-sm-flex">
+				<div class="pe-3 pt-2"><i class="fa fa-star fa-sm"></i> 4.5</div>
+					@if(Session::has('wishlist'))
+					<form action="{{url('/add-wish-place/' . Session::get('wishlist')->id)}}" method="post">
+						{{ method_field('DELETE') }}
+						{{ csrf_field() }}
+						<button class="btn btn-danger px-2 small rounded-pill">
+							<i class="fa fa-heart mx-2 "></i>
+							<span class="pe-2">Remove from favorites</span>
+						</button>
+					</form>
+					@else
+					<form action="{{url('/add-wish-place/' . $posts->id)}}" method="post">
+						{!! csrf_field() !!}
+						@method('PATCH')
+						<button class="btn btn-light border border-dark px-2 rounded-pill">
+							<i class="fa fa-heart me-2 text-dark"></i>
+							Add to your favorites
+						</button>
+					</form>
+					@endif
 			</div>
 			<div class="d-sm-flex py-3 my-2 border-top border-bottom">
 				<div class="img">
@@ -188,12 +216,9 @@
 			</div>
 		</div>
 		<div class="col-sm-5 pt-5 ps-4">
-			@if(Session::has('message'))
-				<div class="alert alert-danger">{{Session::get('message')}}</div>
-			@endif
 			@if(Session::has('reservation'))
 			<div style="border-radius: 1rem" class="ms-3 p-5 shadow bg-white sticky-top">
-				<div class="alert alert-success">Reservation provided successfully with:</div>
+				<div class="alert alert-dark h6">Reservation provided successfully with:</div>
 				<div class="border rounded fs-5">
 					<div class=" p-3 text-muted small border-bottom d-sm-flex">
 						<div class="py-2">
@@ -253,6 +278,7 @@
 					</div>
 					<input type="date" name="checkin_date" id="indater" class="form-control pt-4 text-muted">
 				</div>
+				<span class="text-danger">@error('checkin_date')<i class="small fa fa-warning m-2"></i>{{$message}} @enderror</span>
 				<div class="input-group p-2">
 					<label for="outdater" class="input-group-text text-dark p-3">
 						<i class="fa-calendar-plus fa h6"></i>
@@ -262,6 +288,7 @@
 					</div>
 					<input type="date" name="checkout_date" id="outdater" class="form-control pt-4 text-muted">
 				</div>
+				<span class="text-danger">@error('checkout_date')<i class="small fa fa-warning m-2"></i>{{$message}} @enderror</span>
 				<div class="px-3">
 					<div class="check2 border-top border-bottom text-end p-2">
 							<div for="pt1" class="label text-dark text-start d-sm-flex">

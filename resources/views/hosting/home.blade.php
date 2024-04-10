@@ -20,7 +20,7 @@
 <body>
 	<header class="row p-2 pb-5">
 		<div class="col-sm-8 p-2 ps-5">
-			<img src="/images/airbnb1.png">
+			<a href="{{url('/')}}"><img src="/images/airbnb1.png"></a>
 		</div>
 		<div class="col-sm-4 p-2 px-3">
 			<span class="p-3 h5">Ready to Airbnb it?</span>

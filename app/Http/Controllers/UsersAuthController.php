@@ -60,7 +60,23 @@ class UsersAuthController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $request->validate([
+            'fullname'=>'required'
+        ]);
+        $inputs=$request->all();
+        $user=User::find($id);
+        if($request->profile_pic == null){
+           $request['profile_pic']=Session::get('LoginId')->profile_pic;
+        }else{
+            $file=$request->file('profile_pic');
+            $image=$file-> getClientOriginalName();
+            $file->move(\public_path('profiles/'),$image);
+            $user['profile_pic']=$image;
+        }
+        $user['fullname']=$request->fullname;
+        $user->save();
+        $request->session()->put('LoginId',$user);
+        return back()->with('message','Account details edited successfully!.');
     }
 
     /**

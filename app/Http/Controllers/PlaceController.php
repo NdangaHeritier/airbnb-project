@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use App\Models\Place;
+use App\Models\Wishlist;
 use App\Models\User;
 use Hash;
 use Session;
@@ -48,6 +49,10 @@ class PlaceController extends Controller
         $user=User::find($userid);
         $posts['profile_pic']=$user->profile_pic;
         $posts['fullname']=ucwords($user->fullname);
+        if(Session::has('LoginId')){
+            $wishlist=Wishlist::where('user','=',Session::get('LoginId')->id)->where('place',$id)->first();
+            session()->put('wishlist',$wishlist);
+        }
         session()->put('place', $posts);
         return view('show')->with('posts',$posts);
     }

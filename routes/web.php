@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersAuthController;
 use App\Http\Controllers\BecomeHost;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::resource('/', PlaceController::class);
 Route::resource('/view', PlaceController::class);
 
 Route::resource('/login', UsersAuthController::class);
+Route::get('/account', function(){
+    return view('host.account');
+});
 Route::post('/login', [UsersAuthController::class, 'UserLogin'])->name("UserLogin");
 Route::post('/login/create', [UsersAuthController::class, 'store'])->name("signup");
 Route::get('/dashboard', [UsersAuthController::class, 'dashboard'])->middleware("isLoggedIn");
@@ -53,4 +57,9 @@ Route::post('/view', [ReservationController::class,'store'])->name('reserve');
 Route::resource('/host', ReservationController::class);
 Route::resource('/host/listings', ReservationController::class);
 Route::resource('/host/reservations', ReservationController::class);
+Route::post('/host/reservations', [ReservationController::class,'update']) -> name('status.change');
 Route::get('/host/listings', [ReservationController::class, 'index']) -> name('listings');
+
+//wishlists
+Route::resource('/wishlists', WishlistController::class);
+Route::resource('/add-wish-place', WishlistController::class);

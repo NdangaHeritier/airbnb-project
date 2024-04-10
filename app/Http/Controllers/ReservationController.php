@@ -18,6 +18,8 @@ class ReservationController extends Controller
         if(Session::has('LoginId')){
             $host=Session::get('LoginId')->id;
             $places=Place::where('hosted_by','=',$host)->get();
+            $ress=Reservation::where('host','=',$host)->count();
+            session()->put('reservations',$ress);
             session()->put('places',$places);
             return view('host.home')->with('places',$places);
         }else{
@@ -38,6 +40,10 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'checkin_date'=>'required',
+            'checkout_date'=>'required'
+        ]);
         $placeInfo=Session::get('place');
         if(Session::has('LoginId')){
             $user=Session::get('LoginId')->id;
@@ -49,6 +55,7 @@ class ReservationController extends Controller
             $days=date_diff($checkin, $checkout);
             $amount=$placeInfo->price * $days->days;
             $today=date('Y-m-d');
+            $lastday=Reservation::where('place','=',$place)->max('checkout_date');
             $reservation=new Reservation([
                 'user'=>$user,
                 'host'=>$host,
@@ -60,13 +67,18 @@ class ReservationController extends Controller
                 'checkout_date'=>$checkout,
                 'status'=>'pending'
             ]);
-            if($checkin>$today && $checkin<$checkout){
-                $reservation->save();
-                $hostd=User::find($host);
-                $reservation['nights']=$days->days;
-                $reservation['email']=$hostd->email;
-                $reservation['phone']=$hostd->phone_number;
-                return back()->with('reservation',$reservation);
+            if($request->checkin_date>date('Y-m-d') ){
+                if($lastday<=$request->checkin_date){
+                    $reservation->save();
+                    $hostd=User::find($host);
+                    $reservation['nights']=$days->days;
+                    $reservation['email']=$hostd->email;
+                    $reservation['phone']=$hostd->phone_number;
+                    return back()->with('reservation',$reservation);
+                }else{
+                    $till=date_create($lastday);
+                    return back()->with('message','The place is booked till '. date_format($till,'d M Y').'. Please try picking another arrival date that is free to book place in time.');
+                }
             }else{
                 return back()->with('message','Please choose a valid checkin date or book atleast one night!');
             }
@@ -82,9 +94,10 @@ class ReservationController extends Controller
     public function show(string $id)
     {
         $reservations=Reservation::where('place','=',$id)->get();
+        $place=Place::find($id);
         $users=array();
         foreach($reservations as $reserve){
-            $users[$reserve->host]=User::find($reserve->host)->fullname;
+            $users[]=User::find($reserve->user);
         }
         session()->put('reservations',$reservations);
         session()->put('users',$users);
@@ -92,31 +105,24 @@ class ReservationController extends Controller
         return view('host.reservations');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Reservation $reservation)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, string $id)
     {
-        //
+        $reservation=Reservation::find($id);
+        $reservation->update($request->all());
+        return back()->with('message','Reservation status updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(string $id)
     {
-        //
+        Reservation::destroy($id);
+        return back()->with('message', 'Reservation deleted successfully');
     }
-    public function reserve(string $id)
-    {
-        
-    }
+   
 }

@@ -26,10 +26,10 @@
 <body onload="document.getElementById('notloggedin').style.display='none'">
 	<header class="row p-3 pb-5">
 		<div class="col-sm-11 p-2 ps-5">
-			<img src="../images/airbnb-black.png">
+		<a href="{{url('/')}}"><img src="../images/airbnb-black.png"></a>
 		</div>
 		<div class="col-sm-1 pt-4 p-3">
-			<a href="#" class="bton p-2 px-4 text-dark text-decoration-none">
+			<a href="{{url('/become-a-host')}}" class="bton p-2 px-4 text-dark text-decoration-none">
 			Exit
 			</a>
 		</div>

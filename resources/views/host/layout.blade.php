@@ -13,18 +13,18 @@
 	<script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 </head>
 <body>
-<header class="p-3 border-bottom m-1">
+<header class="p-3 border-bottom m-1 sticky-top bg-white">
 		<div class="row">
 			<div class="img col-sm-4 px-5">
-				<a href="/"><img src="/images/airbnb-black.png"></a>
+				<a href="/"><img src="/images/airbnb1.png"></a>
 			</div>
 			<div class="col-sm-5">
-				<a href="#" class="btn text-dark fw-bold">Listings</a>
-				<a href="#" class="btn text-muted hover rounded-pill">Reservations</a>
-				<a href="#" class="btn text-muted hover rounded-pill">many</a>
+				<a href="{{url('/host')}}" class="btn text-dark fw-bold">Listings</a>
+				<a href="{{url('/host')}}" class="btn text-muted hover rounded-pill">Reservations</a>
+				<a href="{{url('/account')}}" class="btn text-muted hover rounded-pill">Account</a>
 			</div>
 			<div class="col-sm-3 d-sm-flex">
-				<a href="/become-a-host" class="btn text-dark hover rounded-pill">Airbnb Your Home</a>
+				<a href="{{url('/become-a-host')}}" class="btn text-dark hover rounded-pill">Airbnb Your Home</a>
 				<a href="#" class="btn text-dark hover rounded-pill" onclick="show_div('language')"><img src="/images/language.png"></a>
 				<div class="btn rounded-pill border" onclick="document.getElementById('menu-loggedin').style.display='block'">
 					<img src="/images/menu.png">
@@ -38,16 +38,16 @@
 					</div>
 					<div class="menu w-100  text-muted">
 						<div class="sub-menu pb-2 mt-2 w-100 border-bottom">
-							<a href="wishlists" class="px-2 text-decoration-none p-2 text-dark w-100">WishLists</a>
+							<a href="{{url('/wishlists')}}" class="px-2 text-decoration-none p-2 text-dark w-100">WishLists</a>
 						</div>
 						<div class="sub-menu mt-2 w-100">
-							<a href="host" class="px-2 text-decoration-none p-2 text-dark w-100">Manage Listings</a>
+							<a href="{{url('/host')}}" class="px-2 text-decoration-none p-2 text-dark w-100">Manage Listings</a>
 						</div>
 						<div class="sub-menu mt-2 w-10 pb-2 border-bottom">
-							<a href="account" class="px-2 text-decoration-none p-2 text-dark w-100">Account</a>
+							<a href="{{url('/account')}}" class="px-2 text-decoration-none p-2 text-dark w-100">Account</a>
 						</div>
 						<div class="sub-menu mt-2 w-100">
-							<a href="logout" class="px-2 text-decoration-none p-2 text-dark w-100">Logout</a>
+							<a href="{{url('/logout')}}" class="px-2 text-decoration-none p-2 text-dark w-100">Logout</a>
 						</div>
 						
 					</div>
