@@ -18,8 +18,14 @@ class ReservationController extends Controller
         if(Session::has('LoginId')){
             $host=Session::get('LoginId')->id;
             $places=Place::where('hosted_by','=',$host)->get();
+            $reservation_all=array();
+            foreach($places as $place){
+                $number_of_reservations_per_place=Reservation::where('place','=',$place->id)->count();
+                $reservation_all[$place->id]=$number_of_reservations_per_place;
+            }
             $ress=Reservation::where('host','=',$host)->count();
             session()->put('reservations',$ress);
+            session()->put('res_each',$reservation_all);
             session()->put('places',$places);
             return view('host.home')->with('places',$places);
         }else{

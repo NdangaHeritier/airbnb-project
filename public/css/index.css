@@ -7,3 +7,9 @@
 .round-4{
     border-radius: 0.6rem;
 }
+.dark-bg{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.nav-item .small{
+    width: 110px;
+}

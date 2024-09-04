@@ -6,6 +6,7 @@ use App\Http\Controllers\BecomeHost;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\WishlistController;
 
 Route::resource('/', PlaceController::class);
 Route::resource('/view', PlaceController::class);
+Route::post('/host', [PlaceController::class, 'destroy'])->name('Place.Delete');
 
 Route::resource('/login', UsersAuthController::class);
 Route::get('/account', function(){
@@ -63,3 +65,8 @@ Route::get('/host/listings', [ReservationController::class, 'index']) -> name('l
 //wishlists
 Route::resource('/wishlists', WishlistController::class);
 Route::resource('/add-wish-place', WishlistController::class);
+
+//search a place.
+
+Route::resource('/region', SearchController::class);
+Route::resource('/category', SearchController::class);

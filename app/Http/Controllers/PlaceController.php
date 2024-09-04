@@ -19,6 +19,9 @@ class PlaceController extends Controller
      */
     public function index()
     {
+        if(Session::has('category')){
+            Session::pull('category');
+        }
         $hosts=Place::all();
         return view('index')-> with('hosts',$hosts);
     }
@@ -78,6 +81,7 @@ class PlaceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Place::destroy($id);
+        return back()->with('message','Place Removed Successfully from your Listings.');
     }
 }

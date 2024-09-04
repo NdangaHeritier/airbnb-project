@@ -66,10 +66,16 @@ class WishlistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request['user']=Session::get('LoginId')->id;
-        $request['place']=$id;
-        Wishlist::create($request->all());
-        return back()->with('success','This place is added to your wishlist.');
+       if(Session::has('LoginId'))
+       {
+            $request['user']=Session::get('LoginId')->id;
+            $request['place']=$id;
+            Wishlist::create($request->all());
+            return back()->with('success','This place is added to your wishlist.');
+       }
+       else{
+        return redirect('/login')->with('fail message','Login first to add this place to your wishlist.');
+       }
     }
 
     /**

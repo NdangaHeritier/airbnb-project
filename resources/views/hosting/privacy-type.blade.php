@@ -65,33 +65,38 @@
 					<div class="location row g-3">
 					  <div class="col-12 row">
 					  	<div class="col">
-					  	<label for="inputAddress" class="form-label text-dark h5">Region/ country</label>
-					    <select class="form-select p-3" name="place_region" id="inputAddress">
+						<label for="Address" class="form-label text-dark h5">Region</label>
+					    <select class="form-select p-3" name="region" id="Address">
 					    	<option value="">--select region</option>
-					    	<option value="Rwanda">Rwanda</option>
-					    	<option value="Burundi">Burundi</option>
-					    	<option value="Kenya">Kenya</option>
-					    	<option value="Uganda">Uganda</option>
-					    	<option value="Tanzania">Tanzania</option>
-					    	<option value="South-sudan">South sudan</option>
+					    	<option value="Europe">Europe</option>
+					    	<option value="South Africa">South Africa</option>
+					    	<option value="Middle East">Middle East</option>
+					    	<option value="United States">United States</option>
+					    	<option value="United Arab Emirates">United Arab Emirates</option>
+					    	<option value="Central Africa">Central Africa</option>
 					    </select>
+						<span class="text-danger">@error('region')<i class="fa fa-warning text-danger me-2"></i> {{$message}} @enderror</span>
+					  	</div>
+						<div class="col">
+					  	<label for="inputAddress" class="form-label text-dark h5">Country</label>
+					    <input type="text" class="form-control p-3" name="place_region" id="inputAddress" placeholder="ex: Rwanda">
 						<span class="text-danger">@error('place_region')<i class="fa fa-warning text-danger me-2"></i> {{$message}} @enderror</span>
 					  	</div>
 					  	<div class="col">
 					  		<label for="inputprovince" class="form-label h5 text-dark">Province</label>
-					    	<input type="text" name="province" class="form-control p-3" id="inputprovince" placeholder="Kigali city">
+					    	<input type="text" name="province" class="form-control p-3" id="inputprovince" placeholder="ex: Kigali city">
 							<span class="text-danger">@error('province')<i class="fa fa-warning text-danger me-2"></i> {{$message}} @enderror</span>
 						</div>
 					  </div>
 					  <div class="col-12 row p-3">
 					  	<div class="col">
 					  	<label for="inputCity" class="form-label text-dark h5">City</label>
-					    <input type="text" name="city" class="form-control p-3" id="inputCity" placeholder="Kigali">
+					    <input type="text" name="city" class="form-control p-3" id="inputCity" placeholder="ex: Kigali">
 						<span class="text-danger">@error('city')<i class="fa fa-warning text-danger me-2"></i> {{$message}} @enderror</span>
 					  	</div>
 					  	<div class="col">
 					  		<label for="inputStreet" class="form-label h5 text-dark">street</label>
-					    	<input type="text" name="street" class="form-control p-3" id="inputStreet" placeholder="1234 Main St">
+					    	<input type="text" name="street" class="form-control p-3" id="inputStreet" placeholder="ex: 1234 Main St">
 							<span class="text-danger">@error('street')<i class="fa fa-warning text-danger me-2"></i> {{$message}} @enderror</span>
 						</div>
 					  	<div class="col">

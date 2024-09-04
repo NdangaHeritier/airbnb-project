@@ -28,6 +28,7 @@
                     @if($user->id == $reservation->user)
                     <img src="/profiles/{{$user->profile_pic}}" height="100" width="100" class="offset-4 mt-4 rounded-circle" alt=".hey.">
                     <div class="text-muted fw-bold fs-5 pt-2 text-center">{{$user->fullname}}</div>
+                    @break
                     @endif
                 @endforeach
                     <div class="card-body">

@@ -43,6 +43,7 @@ class BecomeHost extends Controller
     }
     public function storePrivacyType(Request $request){
         $request->validate([
+            'region'=> 'required',
             'place_region'=> 'required',
             'province'=> 'required',
             'city'=> 'required',
