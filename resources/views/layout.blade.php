@@ -83,7 +83,8 @@
 			</div>
 		</div>
 		<div class="p-2 offset-2">
-			<form method="POST" class="border border-1 rounded-pill w-75 d-sm-flex small hover">
+			<form method="POST" action="{{url('region/')}}" class="border border-1 rounded-pill w-75 d-sm-flex small hover">
+				@csrf
 				<div class="form-floating hover rounded-pill" onclick="document.getElementById('regions').style.display='block'">
 					<!-- <i class="fa fa-search"></i> -->
 					<input type="search" name="search-place" class="form-control border-0 rounded-pill px-4" placeholder="search destination">
@@ -114,9 +115,7 @@
 						<span class="fw-bold text px-2" style="font-size: 16px">search</span>
 					</button>
 				</div>
-			</form>
-			<div class="hiddens">
-				<div id="regions" style="border-radius: 2rem; width: 450px; position: absolute;display: none; z-index: 9999" class="border shadow shadow-md p-4 mt-3 bg-white">
+				<div id="regions" style="border-radius: 2rem; width: 450px; position: absolute;display: none; z-index: 9999; top: 7.5rem" class="border shadow p-4 mt-3 bg-white">
 					<div class="title row p-2 fw-bold mt-1rem">
 						<span class="col">search by region</span>
 						<button class="text-end border-0 bg-white col">
@@ -125,19 +124,19 @@
 					</div>
 					<div class="p-2">
 						<div class="regs-1 row">
-							<a class="col-sm-4 text-decoration-none text-muted" href="#">
+							<label class="col-sm-4 text-decoration-none text-muted">
 								<img src="/images/region-all.png">
 								<div>
 									A'm flexible
 								</div>
-							</a>
-							<a class="col-sm-4 text-decoration-none text-muted" href="#">
+							</label>
+							<a class="col-sm-4 text-decoration-none text-muted" href="{{url('/region/'.'Europe')}}">
 								<img src="/images/region-europe.png">
 								<div>
 									Europe
 								</div>
 							</a>
-							<a class="col-sm-4 text-decoration-none text-muted" href="#">
+							<a class="col-sm-4 text-decoration-none text-muted" href="{{url('/region/'.'South Africa')}}">
 								<img src="/images/region-south-africa.png">
 								<div>
 									South Africa
@@ -145,19 +144,19 @@
 							</a>
 						</div>
 						<div class="regs-1 row">
-							<a class="col-sm-4 text-decoration-none text-muted" href="#">
+							<a class="col-sm-4 text-decoration-none text-muted" href="{{url('/region/'.'Central Africa')}}">
 								<img src="/images/region-middle-east.png">
 								<div>
 									Middle East
 								</div>
 							</a>
-							<a class="col-sm-4 text-decoration-none text-muted" href="#">
+							<a class="col-sm-4 text-decoration-none text-muted" href="{{url('/region/'.'United Arab Emirates')}}">
 								<img src="/images/region-arab-emirates.png">
 								<div>
 									United Arab Emirates
 								</div>
 							</a>
-							<a class="col-sm-4 text-decoration-none text-muted" href="#">
+							<a class="col-sm-4 text-decoration-none text-muted" href="{{url('/region/'.'United States')}}">
 								<img src="/images/region-united-states.png">
 								<div>
 									United States
@@ -166,6 +165,9 @@
 						</div>
 				</div>
 				</div>
+			</form>
+			<div class="hiddens">
+				
 
 
 				<!-- second hidden header division of dates pickup -->
