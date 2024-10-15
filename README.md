@@ -1,5 +1,5 @@
 # airbnb-project
-This project is still under development and it was insipired by my supervisor during internship at **spiderbit ltd**(a software development and Mobile Development Company in Kigali rwanda -www.spiderbit.rw).
+This project is still under development and it was insipired by my supervisor during internship at [**spiderbit ltd**](www.spiderbit.rw) (a software development and Mobile Development Company in Kigali rwanda).
 
 ![Airbnb](https://github.com/user-attachments/assets/022caf6e-9219-4f57-8f28-350cb3252e4f)
 
@@ -11,9 +11,9 @@ This project is still under development and it was insipired by my supervisor du
 5. it also help clients to save their places of wishes through their **WishList**.
 6. it helps place owner(**host**) to **manage his/her listings(places he/she hosted) as well as their reservations** at airbnb host pannel.
 
-This project was referenced to real US Airbnb inc website(www.airbnb.com). it was choosen by my supervisor to guide me how to create an interactive travels system with Laravel PHP Framework.
+This project was referenced to real US [Airbnb inc website](www.airbnb.com). it was choosen by my supervisor to guide me how to create an interactive travels system with Laravel PHP Framework.
 
-I appriciate this to my Supervisor **RUKUNDO JOSEPH** https://www.linkedin.com/in/joseph-bizimungu-rukundo-b2266923b/
+I appriciate this to my Supervisor [**RUKUNDO JOSEPH**](https://www.linkedin.com/in/joseph-bizimungu-rukundo-b2266923b/)
 
 ## Screenshots:
 >view a place.
