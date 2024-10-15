@@ -16,22 +16,22 @@ This project was referenced to real US [Airbnb inc website](www.airbnb.com). it 
 I appriciate this to my Supervisor [**RUKUNDO JOSEPH**](https://www.linkedin.com/in/joseph-bizimungu-rukundo-b2266923b/)
 
 ## Screenshots:
->view a place.
+>`view a place.`
 
 ![view](https://github.com/user-attachments/assets/754a83ec-2779-404e-b9e6-8bab18abb1c3)
 
->Reserve a place
+>`Reserve a place`
 
 ![reserve](https://github.com/user-attachments/assets/1df4dcdb-2853-4396-9f96-735cb8eca077)
 
->Manage A Listings(Places)
+>`Manage A Listings(Places)`
 
 ![manage your listings](https://github.com/user-attachments/assets/4cea41b5-518e-4822-9127-1b7e943541d1)
 
->Host a new place.
+>`Host a new place.`
 
 ![host a place](https://github.com/user-attachments/assets/3bffbfe3-1b16-4e60-a306-59a6a9bc70bf)
 
->Choose what Describes Your Place
+>`Choose what Describes Your Place`
 
 ![place desc](https://github.com/user-attachments/assets/7c958005-93e8-43ad-bec4-cd94263d5b7b)
